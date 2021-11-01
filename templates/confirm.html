@@ -1,0 +1,179 @@
+{% load static %}
+{% if lang == 'ru' %}
+  <!-- success message -->
+  <div
+    class="
+
+            fixed
+            inset-0
+            backdrop-blur-lg
+            z-50
+            flex flex-col
+            justify-center
+            items-center
+          "
+  >
+    <div
+      class="
+              bg-[#303030]
+              px-10
+              py-5
+              text-center
+              rounded-md
+              w-72
+              h-40
+              flex flex-col
+              justify-evenly
+              items-center
+            "
+    >
+      <p class="flex items-center">
+        Отправлено
+        <img
+          src="{% static '/img/tick.svg' %}"
+          alt="Отправлено"
+          class="ml-2 select-none pointer-events-none"
+        />
+      </p>
+      {% if slug %}
+        {% if lang == 'ru' %}
+          <a href="{% url page slug %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% else %}
+          <a href="{% url page slug lang %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% endif %}
+      {% else %}
+        {% if lang == 'ru' %}
+          <a href="{% url page %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% else %}
+          <a href="{% url page lang %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+{% elif lang == 'uz' %}
+  <!-- success message -->
+  <div
+    class="
+
+            fixed
+            inset-0
+            backdrop-blur-lg
+            z-50
+            flex flex-col
+            justify-center
+            items-center
+          "
+  >
+    <div
+      class="
+              bg-[#303030]
+              px-10
+              py-5
+              text-center
+              rounded-md
+              w-72
+              h-40
+              flex flex-col
+              justify-evenly
+              items-center
+            "
+    >
+      <p class="flex items-center">
+        Отправлено
+        <img
+          src="{% static '/img/tick.svg' %}"
+          alt="Отправлено"
+          class="ml-2 select-none pointer-events-none"
+        />
+      </p>
+      {% if slug %}
+        {% if lang == 'ru' %}
+          <a href="{% url page slug %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% else %}
+          <a href="{% url page slug lang %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% endif %}
+      {% else %}
+        {% if lang == 'ru' %}
+          <a href="{% url page %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% else %}
+          <a href="{% url page lang %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+{% else %}
+  <!-- success message -->
+  <div
+    class="
+
+            fixed
+            inset-0
+            backdrop-blur-lg
+            z-50
+            flex flex-col
+            justify-center
+            items-center
+          "
+  >
+    <div
+      class="
+              bg-[#303030]
+              px-10
+              py-5
+              text-center
+              rounded-md
+              w-72
+              h-40
+              flex flex-col
+              justify-evenly
+              items-center
+            "
+    >
+      <p class="flex items-center">
+        Отправлено
+        <img
+          src="{% static '/img/tick.svg' %}"
+          alt="Отправлено"
+          class="ml-2 select-none pointer-events-none"
+        />
+      </p>
+      {% if slug %}
+        {% if lang == 'ru' %}
+          <a href="{% url page slug %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% else %}
+          <a href="{% url page slug lang %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% endif %}
+      {% else %}
+        {% if lang == 'ru' %}
+          <a href="{% url page %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% else %}
+          <a href="{% url page lang %}" class="rounded-lg border px-5 py-1 inline-block">
+            закрыть
+          </a>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+{% endif %}

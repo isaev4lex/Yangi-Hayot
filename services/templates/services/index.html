@@ -1,0 +1,293 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  {% if lang == 'ru' %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% else %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title_uz }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+{% endblock %}
+{% block content %}
+  {% if success_sent %}
+    {% include 'confirm.html' %}
+  {% endif %}
+  {% if lang == 'ru' %}
+    <!-- intro -->
+      <div
+        class="
+          flex flex-col
+          justify-center
+          h-screen
+          bg-services bg-no-repeat bg-cover
+          min-h-[770px]
+        "
+      >
+        <div class="container flex md:justify-between justify-center">
+          <div
+            class="
+              space-y-[26px]
+              lg:pl-20
+              flex flex-col
+              justify-center
+              items-center
+              md:items-start
+            "
+          >
+            <h1 class="intro-title">Услуги</h1>
+            <p class="intro-subtitle text-center md:text-left">
+              Качество. Креативность. Красота
+            </p>
+          </div>
+          <div>
+            <img
+              src="{% static '/img/services/intro.png' %}"
+              alt="Услуги"
+              class="
+                w-full
+                h-full
+                hidden
+                md:block
+                select-none
+                pointer-events-none
+              "
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="container py-20 space-y-10">
+        <!-- card -->
+        {% for service in services %}
+          <a href="{{ service.get_url_ru }}" class="block">
+            <div class="border relative flex flex-col lg:flex-row lg:h-[375px]">
+              <div
+                class="
+                  w-full
+                  lg:max-w-[550px] lg:h-auto
+                  h-[375px]
+                  relative
+                  pointer-events-none
+                  select-none
+                "
+              >
+              <img
+                src="{{ service.img.url }}"
+                alt="Интерьер дизайн"
+                class="object-cover h-full w-full absolute inset-0 object-center"
+              />
+            </div>
+            <div class="p-[20px] md:p-[50px] flex flex-col w-full space-y-10">
+              <h2 class="font-gigasans text-[28px] title">{{ service.title }}</h2>
+              <p class="leading-loose desc">
+                {% autoescape off %}
+                  {{ service.description }}
+                {% endautoescape %}
+              </p>
+            </div>
+            <!-- dots -->
+            <div>
+              <span class="green-dot -bottom-2 -left-2 lg:hidden"></span>
+              <span
+                class="green-dot lg:-top-2 lg:-right-2 lg:block hidden">
+              </span>
+              <span class="green-dot -bottom-2 -right-2"></span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        <!-- end of card -->
+      </div>
+  {% elif lang == 'uz' %}
+    <!-- intro -->
+      <div
+        class="
+          flex flex-col
+          justify-center
+          h-screen
+          bg-services bg-no-repeat bg-cover
+          min-h-[770px]
+        "
+      >
+        <div class="container flex md:justify-between justify-center">
+          <div
+            class="
+              space-y-[26px]
+              lg:pl-20
+              flex flex-col
+              justify-center
+              items-center
+              md:items-start
+            "
+          >
+            <h1 class="intro-title">Xizmatlar</h1>
+            <p class="intro-subtitle text-center md:text-left">
+              Yuqori sifat. Kreativlik. Go'zallik
+            </p>
+          </div>
+          <div>
+            <img
+              src="{% static '/img/services/intro.png' %}"
+              alt="Услуги"
+              class="
+                w-full
+                h-full
+                hidden
+                md:block
+                select-none
+                pointer-events-none
+              "
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="container py-20 space-y-10">
+        <!-- card -->
+        {% for service in services %}
+          <a href="{{ service.get_url_uz }}" class="block">
+            <div class="border relative flex flex-col lg:flex-row lg:h-[375px]">
+              <div
+                class="
+                  w-full
+                  lg:max-w-[550px] lg:h-auto
+                  h-[375px]
+                  relative
+                  pointer-events-none
+                  select-none
+                "
+              >
+              <img
+                src="{{ service.img.url }}"
+                alt="Интерьер дизайн"
+                class="object-cover h-full w-full absolute inset-0 object-center"
+              />
+            </div>
+            <div class="p-[20px] md:p-[50px] flex flex-col w-full space-y-10">
+              <h2 class="font-gigasans text-[28px] title">{{ service.title_uz }}</h2>
+              <p class="leading-loose desc">
+                {% autoescape off %}
+                  {{ service.description_uz }}
+                {% endautoescape %}
+              </p>
+            </div>
+            <!-- dots -->
+            <div>
+              <span class="green-dot -bottom-2 -left-2 lg:hidden"></span>
+              <span
+                class="green-dot lg:-top-2 lg:-right-2 lg:block hidden">
+              </span>
+              <span class="green-dot -bottom-2 -right-2"></span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        <!-- end of card -->
+      </div>
+  {% else %}
+    <!-- intro -->
+      <div
+        class="
+          flex flex-col
+          justify-center
+          h-screen
+          bg-services bg-no-repeat bg-cover
+          min-h-[770px]
+        "
+      >
+        <div class="container flex md:justify-between justify-center">
+          <div
+            class="
+              space-y-[26px]
+              lg:pl-20
+              flex flex-col
+              justify-center
+              items-center
+              md:items-start
+            "
+          >
+            <h1 class="intro-title">Services</h1>
+            <p class="intro-subtitle text-center md:text-left">
+              High quality. Creativity. Beauty
+            </p>
+          </div>
+          <div>
+            <img
+              src="{% static '/img/services/intro.png' %}"
+              alt="Услуги"
+              class="
+                w-full
+                h-full
+                hidden
+                md:block
+                select-none
+                pointer-events-none
+              "
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="container py-20 space-y-10">
+        <!-- card -->
+        {% for service in services %}
+          <a href="{{ service.get_url_en }}" class="block">
+            <div class="border relative flex flex-col lg:flex-row lg:h-[375px]">
+              <div
+                class="
+                  w-full
+                  lg:max-w-[550px] lg:h-auto
+                  h-[375px]
+                  relative
+                  pointer-events-none
+                  select-none
+                "
+              >
+              <img
+                src="{{ service.img.url }}"
+                alt="Интерьер дизайн"
+                class="object-cover h-full w-full absolute inset-0 object-center"
+              />
+            </div>
+            <div class="p-[20px] md:p-[50px] flex flex-col w-full space-y-10">
+              <h2 class="font-gigasans text-[28px] title">{{ service.title_en }}</h2>
+              <p class="leading-loose desc">
+                {% autoescape off %}
+                  {{ service.description_en }}
+                {% endautoescape %}
+              </p>
+            </div>
+            <!-- dots -->
+            <div>
+              <span class="green-dot -bottom-2 -left-2 lg:hidden"></span>
+              <span
+                class="green-dot lg:-top-2 lg:-right-2 lg:block hidden">
+              </span>
+              <span class="green-dot -bottom-2 -right-2"></span>
+            </div>
+          </div>
+        </a>
+        {% endfor %}
+        <!-- end of card -->
+      </div>
+  {% endif %}
+{% endblock %}
+{% block scripts %}
+  <script src="{% static '/js/index.js' %}" defer></script>
+{% endblock %}

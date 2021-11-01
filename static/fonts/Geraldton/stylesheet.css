@@ -1,0 +1,192 @@
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-BoldItalic.eot');
+    src: local('Geraldton Bold Italic'), local('Geraldton-BoldItalic'),
+        url('Geraldton-BoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-BoldItalic.woff2') format('woff2'),
+        url('Geraldton-BoldItalic.woff') format('woff'),
+        url('Geraldton-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-MediumItalic.eot');
+    src: local('Geraldton Medium Italic'), local('Geraldton-MediumItalic'),
+        url('Geraldton-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-MediumItalic.woff2') format('woff2'),
+        url('Geraldton-MediumItalic.woff') format('woff'),
+        url('Geraldton-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-Light.eot');
+    src: local('Geraldton Light'), local('Geraldton-Light'),
+        url('Geraldton-Light.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-Light.woff2') format('woff2'),
+        url('Geraldton-Light.woff') format('woff'),
+        url('Geraldton-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geraldton Extra';
+    src: url('Geraldton-ExtraBoldItalic.eot');
+    src: local('Geraldton Extra Bold Italic'), local('Geraldton-ExtraBoldItalic'),
+        url('Geraldton-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-ExtraBoldItalic.woff2') format('woff2'),
+        url('Geraldton-ExtraBoldItalic.woff') format('woff'),
+        url('Geraldton-ExtraBoldItalic.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton Extra';
+    src: url('Geraldton-ExtraBold.eot');
+    src: local('Geraldton Extra Bold'), local('Geraldton-ExtraBold'),
+        url('Geraldton-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-ExtraBold.woff2') format('woff2'),
+        url('Geraldton-ExtraBold.woff') format('woff'),
+        url('Geraldton-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-LightItalic.eot');
+    src: local('Geraldton Light Italic'), local('Geraldton-LightItalic'),
+        url('Geraldton-LightItalic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-LightItalic.woff2') format('woff2'),
+        url('Geraldton-LightItalic.woff') format('woff'),
+        url('Geraldton-LightItalic.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-Black.eot');
+    src: local('Geraldton Black'), local('Geraldton-Black'),
+        url('Geraldton-Black.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-Black.woff2') format('woff2'),
+        url('Geraldton-Black.woff') format('woff'),
+        url('Geraldton-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geraldton Extra';
+    src: url('Geraldton-ExtraLight.eot');
+    src: local('Geraldton Extra Light'), local('Geraldton-ExtraLight'),
+        url('Geraldton-ExtraLight.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-ExtraLight.woff2') format('woff2'),
+        url('Geraldton-ExtraLight.woff') format('woff'),
+        url('Geraldton-ExtraLight.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-BlackItalic.eot');
+    src: local('Geraldton Black Italic'), local('Geraldton-BlackItalic'),
+        url('Geraldton-BlackItalic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-BlackItalic.woff2') format('woff2'),
+        url('Geraldton-BlackItalic.woff') format('woff'),
+        url('Geraldton-BlackItalic.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton Extra';
+    src: url('Geraldton-ExtraLightItalic.eot');
+    src: local('Geraldton Extra Light Italic'), local('Geraldton-ExtraLightItalic'),
+        url('Geraldton-ExtraLightItalic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-ExtraLightItalic.woff2') format('woff2'),
+        url('Geraldton-ExtraLightItalic.woff') format('woff'),
+        url('Geraldton-ExtraLightItalic.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-Bold.eot');
+    src: local('Geraldton Bold'), local('Geraldton-Bold'),
+        url('Geraldton-Bold.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-Bold.woff2') format('woff2'),
+        url('Geraldton-Bold.woff') format('woff'),
+        url('Geraldton-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-Italic.eot');
+    src: local('Geraldton Italic'), local('Geraldton-Italic'),
+        url('Geraldton-Italic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-Italic.woff2') format('woff2'),
+        url('Geraldton-Italic.woff') format('woff'),
+        url('Geraldton-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-ThinItalic.eot');
+    src: local('Geraldton Thin Italic'), local('Geraldton-ThinItalic'),
+        url('Geraldton-ThinItalic.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-ThinItalic.woff2') format('woff2'),
+        url('Geraldton-ThinItalic.woff') format('woff'),
+        url('Geraldton-ThinItalic.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-Medium.eot');
+    src: local('Geraldton Medium'), local('Geraldton-Medium'),
+        url('Geraldton-Medium.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-Medium.woff2') format('woff2'),
+        url('Geraldton-Medium.woff') format('woff'),
+        url('Geraldton-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-Regular.eot');
+    src: local('Geraldton'), local('Geraldton-Regular'),
+        url('Geraldton-Regular.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-Regular.woff2') format('woff2'),
+        url('Geraldton-Regular.woff') format('woff'),
+        url('Geraldton-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Geraldton';
+    src: url('Geraldton-Thin.eot');
+    src: local('Geraldton Thin'), local('Geraldton-Thin'),
+        url('Geraldton-Thin.eot?#iefix') format('embedded-opentype'),
+        url('Geraldton-Thin.woff2') format('woff2'),
+        url('Geraldton-Thin.woff') format('woff'),
+        url('Geraldton-Thin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+}
+

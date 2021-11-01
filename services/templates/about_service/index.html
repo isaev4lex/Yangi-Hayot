@@ -1,0 +1,185 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  {% if lang == 'ru' %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% else %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title_uz }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+{% endblock %}
+{% block content %}
+  {% if success_sent %}
+    {% include 'confirm.html' %}
+  {% endif %}
+  {% if lang == 'ru' %}
+    <div class="mt-[170px] w-full max-h-[750px] relative overflow-hidden">
+      {% for service in services %}
+        {% if service.slug == slug %}
+          <div class="container h-full">
+            <div
+              class="
+                h-full
+                bg-[#303030] bg-opacity-70
+                w-full
+                lg:w-1/2
+                p-5
+                sm:p-10
+                mx-auto
+                lg:mx-0
+              "
+            >
+              <h2
+                class="
+                  intro-title
+                  text-center
+                  lg:text-left
+                  sm:intro-title
+                  "
+              >
+                {{ service.title }}
+              </h2>
+              <p class="mt-5 md:mt-10 leading-relaxed text-[12px] sm:text-sm">
+                {% autoescape off %}
+                  {{ service.description }}
+                {% endautoescape %}
+              </p>
+            </div>
+          </div>
+          <img
+            src="{{ service.img.url }}"
+            alt="Дизайн интерьеров"
+            class="
+                    absolute
+                    object-cover
+                    inset-0
+                    w-full
+                    h-full
+                    object-center
+                    z-[-1]
+                  "
+          />
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% elif lang == 'uz' %}
+    <div class="mt-[170px] w-full max-h-[750px] relative overflow-hidden">
+      {% for service in services %}
+        {% if service.slug == slug %}
+          <div class="container h-full">
+            <div
+              class="
+                h-full
+                bg-[#303030] bg-opacity-70
+                w-full
+                lg:w-1/2
+                p-5
+                sm:p-10
+                mx-auto
+                lg:mx-0
+              "
+            >
+              <h2
+                class="
+                  intro-title
+                  text-center
+                  lg:text-left
+                  sm:intro-title
+                  "
+              >
+                {{ service.title_uz }}
+              </h2>
+              <p class="mt-5 md:mt-10 leading-relaxed text-[12px] sm:text-sm">
+                {% autoescape off %}
+                  {{ service.description_uz }}
+                {% endautoescape %}
+              </p>
+            </div>
+          </div>
+          <img
+            src="{{ service.img.url }}"
+            alt="Дизайн интерьеров"
+            class="
+                    absolute
+                    object-cover
+                    inset-0
+                    w-full
+                    h-full
+                    object-center
+                    z-[-1]
+                  "
+          />
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="mt-[170px] w-full max-h-[750px] relative overflow-hidden">
+      {% for service in services %}
+        {% if service.slug == slug %}
+          <div class="container h-full">
+            <div
+              class="
+                h-full
+                bg-[#303030] bg-opacity-70
+                w-full
+                lg:w-1/2
+                p-5
+                sm:p-10
+                mx-auto
+                lg:mx-0
+              "
+            >
+              <h2
+                class="
+                  intro-title
+                  text-center
+                  lg:text-left
+                  sm:intro-title
+                  "
+              >
+                {{ service.title_en }}
+              </h2>
+              <p class="mt-5 md:mt-10 leading-relaxed text-[12px] sm:text-sm">
+                {% autoescape off %}
+                  {{ service.description_en }}
+                {% endautoescape %}
+              </p>
+            </div>
+          </div>
+          <img
+            src="{{ service.img.url }}"
+            alt="Дизайн интерьеров"
+            class="
+                    absolute
+                    object-cover
+                    inset-0
+                    w-full
+                    h-full
+                    object-center
+                    z-[-1]
+                  "
+          />
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}
+{% block scripts %}
+  <script src="{% static '/js/index.js' %}" defer></script>
+{% endblock %}

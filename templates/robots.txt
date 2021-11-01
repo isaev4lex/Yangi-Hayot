@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+Disallow: /*admin/
+Sitemap: https://https://new-interior.uz/sitemap.xml

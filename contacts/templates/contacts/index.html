@@ -1,0 +1,428 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  {% if lang == 'ru' %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% else %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title_uz }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+{% endblock %}
+{% block content %}
+  {% if success_sent %}
+    {% include 'confirm.html' %}
+  {% endif %}
+  {% if lang == 'ru' %}
+    <!-- contact -->
+    <div class="container pt-[200px] pb-14">
+      <div
+        class="
+                grid
+                md:grid-cols-2
+                mx-auto
+                max-w-[1060px]
+                space-y-14
+                md:space-y-0 md:gap-x-3
+              "
+      >
+        <div>
+          <h2 class="intro-title text-center md:text-left mb-5">Контакты</h2>
+          <p class="intro-subtitle text-center md:text-left">Адрес, номер</p>
+
+          <div class="space-y-14 mt-[30px] md:mt-[100px]">
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/phone.svg' %}"
+                  alt="Телефон"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">телефон</p>
+                {% for phone in contact_info.phones %}
+                  <a class="mt-auto" href="tel:{{phone}}">{{ phone }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/location.svg' %}"
+                  alt="Адрес"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">адрес</p>
+                {% for address in contact_info.addresses %}
+                  <a class="mt-auto" href="#">{{ address.city }}, {{ address.street }}, {{ address.landmark }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/email.svg' %}"
+                  alt="Почта"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">Почта</p>
+                {% for email in contact_info.emails %}
+                  <a class="mt-auto" href="mailto:{{email}}">{{ email }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form action="#" class="w-full space-y-5"> {% csrf_token %}
+            <div class="w-full space-y-5">
+              <input
+                type="text"
+                name="name"
+                placeholder="Имя и фамилия"
+                class="input"
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Телефон"
+                class="input"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                class="input"
+              />
+            </div>
+            <div class="w-full">
+                    <textarea
+                      name="message"
+                      placeholder="Опишите нам свой проект"
+                      class="input h-40 md:h-80 resize-none mb-8"
+                    ></textarea>
+              <div class="flex justify-center md:justify-end">
+                <button type="submit" class="text-[22px] font-medium">
+                  Построить будущее
+                  <svg
+                    width="74"
+                    height="58"
+                    viewBox="0 0 74 58"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline"
+                  >
+                    <circle cx="27.5" cy="30.5" r="27.5" fill="#58AD3A" />
+                    <g clip-path="url(#clip0)">
+                      <path
+                        d="M74 28.0639C74 28.5753 73.496 28.895 73.118 29.2146C72.74 29.5343 72.425 29.8539 72.047 30.1735C71.543 30.621 71.039 31.0046 70.535 31.4521C69.968 31.9635 69.401 32.411 68.8341 32.9224C68.2671 33.4338 67.6371 33.9452 67.0701 34.4566C66.5031 34.9041 65.9991 35.3516 65.4321 35.863C64.9911 36.2466 64.5501 36.6301 64.1721 36.9498C63.9201 37.1416 63.6681 37.3973 63.4161 37.589C63.3531 37.653 63.2901 37.653 63.2901 37.7169C63.1011 37.8448 62.9121 37.9087 62.7231 37.9087C62.4711 37.9087 62.2191 37.7808 62.0301 37.589C61.7152 37.2055 61.7782 36.6301 62.1562 36.3105L70.724 28.895H52.8953C52.3913 43.9178 40.2325 55.9361 25.3017 55.9361C16.4818 55.9361 8.4179 51.7808 3.12598 44.5571C2.81098 44.1735 2.93698 43.5982 3.31498 43.2785C3.69297 42.9589 4.25996 43.0868 4.57496 43.4703C9.48889 50.2466 17.0488 54.0822 25.3017 54.0822C39.2245 54.0822 50.6273 42.8311 51.0683 28.8311H32.1686C31.6646 28.8311 31.2866 28.4475 31.2866 27.9361C31.2866 27.4247 31.6646 27.0411 32.1686 27.0411H51.0683C50.6273 12.9772 39.2245 1.72603 25.3017 1.72603C17.0488 1.72603 9.48889 5.62557 4.57496 12.3379C4.25996 12.7215 3.69297 12.8493 3.31498 12.5297C2.93698 12.21 2.81098 11.6347 3.12598 11.2511C8.4809 4.15525 16.5448 0 25.3647 0C40.2955 0 52.5173 12.0822 52.9583 27.169H70.787L62.1562 19.6256C61.7782 19.3059 61.7152 18.7306 62.0301 18.347C62.3451 17.9635 62.9121 17.9635 63.2901 18.2831C63.4161 18.411 63.5421 18.4749 63.6681 18.6027C63.9831 18.8584 64.2981 19.1781 64.6131 19.4338C65.0541 19.8174 65.5581 20.2648 65.9991 20.6484C66.5661 21.1598 67.1331 21.6073 67.6371 22.1187C68.2041 22.6301 68.7711 23.1416 69.401 23.653C69.968 24.1005 70.472 24.6119 71.039 25.0594C71.48 25.4429 71.984 25.8265 72.425 26.274C72.74 26.5297 73.055 26.7854 73.37 27.105C73.685 27.3607 74 27.6164 74 28.0639Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0">
+                        <rect
+                          width="71"
+                          height="56"
+                          fill="white"
+                          transform="translate(3)"
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% elif lang == 'uz' %}
+    <!-- contact -->
+    <div class="container pt-[200px] pb-14">
+      <div
+        class="
+                grid
+                md:grid-cols-2
+                mx-auto
+                max-w-[1060px]
+                space-y-14
+                md:space-y-0 md:gap-x-3
+              "
+      >
+        <div>
+          <h2 class="intro-title text-center md:text-left mb-5">Biz bilan aloqa</h2>
+          <p class="intro-subtitle text-center md:text-left">Manzil, telefon raqami</p>
+
+          <div class="space-y-14 mt-[30px] md:mt-[100px]">
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/phone.svg' %}"
+                  alt="Телефон"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">Telefon raqami</p>
+                {% for phone in contact_info.phones %}
+                  <a class="mt-auto" href="tel:{{phone}}">{{ phone }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/location.svg' %}"
+                  alt="Адрес"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">Manzil</p>
+                {% for address in contact_info.addresses %}
+                  <a class="mt-auto" href="#">{{ address.city }}, {{ address.street }}, {{ address.landmark }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/email.svg' %}"
+                  alt="Почта"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">E-Mail</p>
+                {% for email in contact_info.emails %}
+                  <a class="mt-auto" href="mailto:{{email}}">{{ email }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form action="#" class="w-full space-y-5"> {% csrf_token %}
+            <div class="w-full space-y-5">
+              <input
+                type="text"
+                name="name"
+                placeholder="Ism va familiya"
+                class="input"
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Telefon raqami"
+                class="input"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                class="input"
+              />
+            </div>
+            <div class="w-full">
+                    <textarea
+                      name="message"
+                      placeholder="Proektingiz haqida qisqacha ma’lumot qoldiring"
+                      class="input h-40 md:h-80 resize-none mb-8"
+                    ></textarea>
+              <div class="flex justify-center md:justify-end">
+                <button type="submit" class="text-[22px] font-medium">
+                  Yuborish
+                  <svg
+                    width="74"
+                    height="58"
+                    viewBox="0 0 74 58"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline"
+                  >
+                    <circle cx="27.5" cy="30.5" r="27.5" fill="#58AD3A" />
+                    <g clip-path="url(#clip0)">
+                      <path
+                        d="M74 28.0639C74 28.5753 73.496 28.895 73.118 29.2146C72.74 29.5343 72.425 29.8539 72.047 30.1735C71.543 30.621 71.039 31.0046 70.535 31.4521C69.968 31.9635 69.401 32.411 68.8341 32.9224C68.2671 33.4338 67.6371 33.9452 67.0701 34.4566C66.5031 34.9041 65.9991 35.3516 65.4321 35.863C64.9911 36.2466 64.5501 36.6301 64.1721 36.9498C63.9201 37.1416 63.6681 37.3973 63.4161 37.589C63.3531 37.653 63.2901 37.653 63.2901 37.7169C63.1011 37.8448 62.9121 37.9087 62.7231 37.9087C62.4711 37.9087 62.2191 37.7808 62.0301 37.589C61.7152 37.2055 61.7782 36.6301 62.1562 36.3105L70.724 28.895H52.8953C52.3913 43.9178 40.2325 55.9361 25.3017 55.9361C16.4818 55.9361 8.4179 51.7808 3.12598 44.5571C2.81098 44.1735 2.93698 43.5982 3.31498 43.2785C3.69297 42.9589 4.25996 43.0868 4.57496 43.4703C9.48889 50.2466 17.0488 54.0822 25.3017 54.0822C39.2245 54.0822 50.6273 42.8311 51.0683 28.8311H32.1686C31.6646 28.8311 31.2866 28.4475 31.2866 27.9361C31.2866 27.4247 31.6646 27.0411 32.1686 27.0411H51.0683C50.6273 12.9772 39.2245 1.72603 25.3017 1.72603C17.0488 1.72603 9.48889 5.62557 4.57496 12.3379C4.25996 12.7215 3.69297 12.8493 3.31498 12.5297C2.93698 12.21 2.81098 11.6347 3.12598 11.2511C8.4809 4.15525 16.5448 0 25.3647 0C40.2955 0 52.5173 12.0822 52.9583 27.169H70.787L62.1562 19.6256C61.7782 19.3059 61.7152 18.7306 62.0301 18.347C62.3451 17.9635 62.9121 17.9635 63.2901 18.2831C63.4161 18.411 63.5421 18.4749 63.6681 18.6027C63.9831 18.8584 64.2981 19.1781 64.6131 19.4338C65.0541 19.8174 65.5581 20.2648 65.9991 20.6484C66.5661 21.1598 67.1331 21.6073 67.6371 22.1187C68.2041 22.6301 68.7711 23.1416 69.401 23.653C69.968 24.1005 70.472 24.6119 71.039 25.0594C71.48 25.4429 71.984 25.8265 72.425 26.274C72.74 26.5297 73.055 26.7854 73.37 27.105C73.685 27.3607 74 27.6164 74 28.0639Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0">
+                        <rect
+                          width="71"
+                          height="56"
+                          fill="white"
+                          transform="translate(3)"
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <!-- contact -->
+    <div class="container pt-[200px] pb-14">
+      <div
+        class="
+                grid
+                md:grid-cols-2
+                mx-auto
+                max-w-[1060px]
+                space-y-14
+                md:space-y-0 md:gap-x-3
+              "
+      >
+        <div>
+          <h2 class="intro-title text-center md:text-left mb-5">Contacts</h2>
+          <p class="intro-subtitle text-center md:text-left">Address, phone number</p>
+
+          <div class="space-y-14 mt-[30px] md:mt-[100px]">
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/phone.svg' %}"
+                  alt="Телефон"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">Phone Numbers</p>
+                {% for phone in contact_info.phones %}
+                  <a class="mt-auto" href="tel:{{phone}}">{{ phone }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/location.svg' %}"
+                  alt="Адрес"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">Address</p>
+                {% for address in contact_info.addresses %}
+                  <a class="mt-auto" href="#">{{ address.city }}, {{ address.street }}, {{ address.landmark }}</a>
+                {% endfor %}
+              </div>
+            </div>
+
+            <div class="flex h-14">
+              <div class="flex items-center justify-center border-r w-16">
+                <img
+                  src="{% static '/img/contact/email.svg' %}"
+                  alt="Почта"
+                  class="w-10 h-10 select-none pointer-events-none"
+                />
+              </div>
+              <div class="pl-3 flex flex-col">
+                <p class="uppercase font-medium opacity-60">Mail</p>
+                {% for email in contact_info.emails %}
+                  <a class="mt-auto" href="mailto:{{email}}">{{ email }}</a>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <form action="#" class="w-full space-y-5"> {% csrf_token %}
+            <div class="w-full space-y-5">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name and surname"
+                class="input"
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone number"
+                class="input"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                class="input"
+              />
+            </div>
+            <div class="w-full">
+                    <textarea
+                      name="message"
+                      placeholder="Leave a brief information about your project "
+                      class="input h-40 md:h-80 resize-none mb-8"
+                    ></textarea>
+              <div class="flex justify-center md:justify-end">
+                <button type="submit" class="text-[22px] font-medium">
+                  Send
+                  <svg
+                    width="74"
+                    height="58"
+                    viewBox="0 0 74 58"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="inline"
+                  >
+                    <circle cx="27.5" cy="30.5" r="27.5" fill="#58AD3A" />
+                    <g clip-path="url(#clip0)">
+                      <path
+                        d="M74 28.0639C74 28.5753 73.496 28.895 73.118 29.2146C72.74 29.5343 72.425 29.8539 72.047 30.1735C71.543 30.621 71.039 31.0046 70.535 31.4521C69.968 31.9635 69.401 32.411 68.8341 32.9224C68.2671 33.4338 67.6371 33.9452 67.0701 34.4566C66.5031 34.9041 65.9991 35.3516 65.4321 35.863C64.9911 36.2466 64.5501 36.6301 64.1721 36.9498C63.9201 37.1416 63.6681 37.3973 63.4161 37.589C63.3531 37.653 63.2901 37.653 63.2901 37.7169C63.1011 37.8448 62.9121 37.9087 62.7231 37.9087C62.4711 37.9087 62.2191 37.7808 62.0301 37.589C61.7152 37.2055 61.7782 36.6301 62.1562 36.3105L70.724 28.895H52.8953C52.3913 43.9178 40.2325 55.9361 25.3017 55.9361C16.4818 55.9361 8.4179 51.7808 3.12598 44.5571C2.81098 44.1735 2.93698 43.5982 3.31498 43.2785C3.69297 42.9589 4.25996 43.0868 4.57496 43.4703C9.48889 50.2466 17.0488 54.0822 25.3017 54.0822C39.2245 54.0822 50.6273 42.8311 51.0683 28.8311H32.1686C31.6646 28.8311 31.2866 28.4475 31.2866 27.9361C31.2866 27.4247 31.6646 27.0411 32.1686 27.0411H51.0683C50.6273 12.9772 39.2245 1.72603 25.3017 1.72603C17.0488 1.72603 9.48889 5.62557 4.57496 12.3379C4.25996 12.7215 3.69297 12.8493 3.31498 12.5297C2.93698 12.21 2.81098 11.6347 3.12598 11.2511C8.4809 4.15525 16.5448 0 25.3647 0C40.2955 0 52.5173 12.0822 52.9583 27.169H70.787L62.1562 19.6256C61.7782 19.3059 61.7152 18.7306 62.0301 18.347C62.3451 17.9635 62.9121 17.9635 63.2901 18.2831C63.4161 18.411 63.5421 18.4749 63.6681 18.6027C63.9831 18.8584 64.2981 19.1781 64.6131 19.4338C65.0541 19.8174 65.5581 20.2648 65.9991 20.6484C66.5661 21.1598 67.1331 21.6073 67.6371 22.1187C68.2041 22.6301 68.7711 23.1416 69.401 23.653C69.968 24.1005 70.472 24.6119 71.039 25.0594C71.48 25.4429 71.984 25.8265 72.425 26.274C72.74 26.5297 73.055 26.7854 73.37 27.105C73.685 27.3607 74 27.6164 74 28.0639Z"
+                        fill="white"
+                      />
+                    </g>
+                    <defs>
+                      <clipPath id="clip0">
+                        <rect
+                          width="71"
+                          height="56"
+                          fill="white"
+                          transform="translate(3)"
+                        />
+                      </clipPath>
+                    </defs>
+                  </svg>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+{% block scripts %}
+  <script src="{% static '/js/index.js' %}" defer></script>
+{% endblock %}

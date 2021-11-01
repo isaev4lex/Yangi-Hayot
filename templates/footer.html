@@ -1,0 +1,124 @@
+{% if lang == 'ru' %}
+  <!-- footer -->
+  <footer class="bg-[#252525] py-5 lg:py-10">
+    <div
+      class="
+              container
+              flex flex-col
+              md:flex-row
+              items-center
+              md:items-start
+              text-center
+              md:text-left
+              leading-loose
+              text-sm
+            "
+    >
+      <ul class="md:mr-28">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="{% url 'services' %}">Услуги</a></li>
+        <li><a href="{% url 'portfolio' %}">Портфолио</a></li>
+        <li><a href="{% url 'contacts' %}">Контакты</a></li>
+        <li><a href="{% url 'about' %}">О нас</a></li>
+      </ul>
+      <!-- <ul>
+        <li><a href="#">Правила использования сайта</a></li>
+        <li><a href="#">Карта сайта</a></li>
+        <li><a href="#">Публичная оферта</a></li>
+      </ul> -->
+      <ul class="md:ml-auto">
+          {% for phone in contact_info.phones %}
+            <li><a href="tel:{{phone}}">{{phone}}</a></li>
+          {% endfor %}
+          {% for email in contact_info.emails %}
+            <li><a href="mailto:{{email}}">{{ email }}</a></li>
+          {% endfor %}
+          {% for address in contact_info.addresses %}
+            <li><a href="#">{{ address.city }}, {{ address.street }}, {{ address.landmark }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
+  </footer>
+{% elif lang == 'uz' %}
+  <!-- footer -->
+  <footer class="bg-[#252525] py-5 lg:py-10">
+    <div
+      class="
+              container
+              flex flex-col
+              md:flex-row
+              items-center
+              md:items-start
+              text-center
+              md:text-left
+              leading-loose
+              text-sm
+            "
+    >
+      <ul class="md:mr-28">
+        <li><a href="{% url 'home' 'uz' %}">Bosh sahifa</a></li>
+        <li><a href="{% url 'services' 'uz' %}">Bizning xizmatlarimiz</a></li>
+        <li><a href="{% url 'portfolio' 'uz' %}">Portfolio</a></li>
+        <li><a href="{% url 'contacts' 'uz' %}">Biz bilan aloqa</a></li>
+        <li><a href="{% url 'about' 'uz' %}">Kompaniyamiz haqida</a></li>
+      </ul>
+      <!-- <ul>
+        <li><a href="#">Правила использования сайта</a></li>
+      <li><a href="#">Карта сайта</a></li>
+        <li><a href="#">Публичная оферта</a></li>
+      </ul> -->
+      <ul class="md:ml-auto">
+          {% for phone in contact_info.phones %}
+            <li><a href="tel:{{phone}}">{{phone}}</a></li>
+          {% endfor %}
+          {% for email in contact_info.emails %}
+            <li><a href="mailto:{{email}}">{{ email }}</a></li>
+          {% endfor %}
+          {% for address in contact_info.addresses %}
+            <li><a href="#">{{ address.city }}, {{ address.street }}, {{ address.landmark }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
+  </footer>
+{% else %}
+  <!-- footer -->
+  <footer class="bg-[#252525] py-5 lg:py-10">
+    <div
+      class="
+              container
+              flex flex-col
+              md:flex-row
+              items-center
+              md:items-start
+              text-center
+              md:text-left
+              leading-loose
+              text-sm
+            "
+    >
+      <ul class="md:mr-28">
+        <li><a href="{% url 'home' 'en' %}">Home page</a></li>
+        <li><a href="{% url 'services' 'en' %}">Our services</a></li>
+        <li><a href="{% url 'portfolio' 'en' %}">Portfolio</a></li>
+        <li><a href="{% url 'contacts' 'en' %}">Contacts</a></li>
+        <li><a href="{% url 'about' 'en' %}">About us</a></li>
+      </ul>
+      <!-- <ul>
+        <li><a href="#">Правила использования сайта</a></li>
+      <li><a href="#">Карта сайта</a></li>
+        <li><a href="#">Публичная оферта</a></li>
+      </ul> -->
+      <ul class="md:ml-auto">
+          {% for phone in contact_info.phones %}
+            <li><a href="tel:{{phone}}">{{phone}}</a></li>
+          {% endfor %}
+          {% for email in contact_info.emails %}
+            <li><a href="mailto:{{email}}">{{ email }}</a></li>
+          {% endfor %}
+          {% for address in contact_info.addresses %}
+            <li><a href="#">{{ address.city }}, {{ address.street }}, {{ address.landmark }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
+  </footer>
+{% endif %}

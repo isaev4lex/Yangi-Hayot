@@ -1,0 +1,611 @@
+{% load static %}
+{% if lang == 'ru' %}
+  <!-- header -->
+  <header class="flex top-0 right-0 left-0 absolute py-10 px-5 text-lg">
+    <div class="container flex justify-between items-center relative">
+      <div class="z-40">
+        <a href="{% url 'home' %}">
+          <img src="{% static '/img/logo.svg' %}" alt="Логотип" />
+        </a>
+      </div>
+      <ul class="hidden lg:flex justify-between max-w-[720px] w-full">
+        <li><a href="{% url 'home' %}">Главная</a></li>
+        <li><a href="{% url 'services' %}">Наши услуги</a></li>
+        <li><a href="{% url 'portfolio' %}">Портфолио</a></li>
+        <li><a href="{% url 'contacts' %}">Контакты</a></li>
+        <li><a href="{% url 'about' %}">О нас</a></li>
+      </ul>
+      <div
+        class="
+                hidden
+                lg:flex
+                w-full
+                max-w-xs
+                justify-end
+                lg:justify-between lg:max-w-[150px]
+                xl:max-w-xs
+              "
+      >
+        <ul
+          class="
+                  lg:flex
+                  w-full
+                  items-center
+                  max-w-none
+                  lg:max-w-[80px]
+                  hidden
+                  justify-between
+                "
+        >
+          {% if slug %}
+            <li>
+              <a href="{% url page slug 'uz' %}" class="">uz</a>
+            </li>
+            <li class="lang-active">
+              <a href="{% url page slug %}">ru</a>
+            </li>
+            <li><a href="{% url page slug 'en' %}" class="">en</a></li>
+          {% else %}
+            <li>
+              <a href="{% url page 'uz' %}" class="">uz</a>
+            </li>
+            <li class="lang-active">
+              <a href="{% url page %}">ru</a>
+            </li>
+            <li><a href="{% url page 'en' %}" class="">en</a></li>
+          {% endif %}
+        </ul>
+        {% for phone in contact_info.phones %}
+          <a href="tel:{{ phone }}" class="hidden xl:flex">
+            <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="mr-3" />
+            {{ phone }}
+          </a>
+        <a
+          href="tel:{{ phone }}"
+          class="
+                  flex
+                  xl:hidden
+                  justify-center
+                  items-center
+                  border
+                  rounded-full
+                  w-10
+                  h-10
+                "
+        >
+        {% endfor %}
+
+
+          <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="block" />
+        </a>
+      </div>
+      <!-- hamburger menu -->
+      <div
+        class="
+                lg:hidden
+                flex flex-col
+                items-center
+                justify-center
+                space-y-1
+                select-none
+                cursor-pointer
+                border-2
+                rounded-full
+                w-10
+                h-10
+                z-40
+              "
+        id="hamburger"
+      >
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+      </div>
+      <!-- hamburger window -->
+      <div
+        class="
+                hidden
+                inset-0
+                backdrop-blur-sm
+                w-full
+                h-full
+                z-30
+                lg:hidden
+                bg-white bg-opacity-30
+              "
+        id="blur"
+      ></div>
+      <div
+        class="hidden lg:hidden absolute top-full right-0 left-0 pt-4 z-40"
+        id="mobile"
+      >
+        <div
+          class="
+                  bg-[#303030]
+                  p-7
+                  rounded-xl
+                  space-y-6
+                  shadow-2xl
+                  flex
+                  sm:block
+                "
+        >
+          <!-- navigation list -->
+          <ul class="w-full flex flex-col sm:flex-row justify-between">
+            <li><a href="{% url 'home' %}">Главная</a></li>
+            <li><a href="{% url 'services' %}">Наши услуги</a></li>
+            <li><a href="{% url 'portfolio' %}">Портфолио</a></li>
+            <li><a href="{% url 'contacts' %}">Контакты</a></li>
+            <li><a href="{% url 'about' %}">О нас</a></li>
+          </ul>
+          <!-- lang & number -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-between"
+          >
+            <ul
+              class="
+                      flex flex-col
+                      sm:flex-row sm:max-w-[80px]
+                      w-full
+                      justify-between
+                      items-center
+                    "
+            >
+              {% if slug %}
+                <li>
+                  <a href="{% url page slug 'uz' %}" >uz</a>
+                </li>
+                <li class="lang-active">
+                  <a href="{% url page slug %}">ru</a>
+                </li>
+                <li><a href="{% url page slug 'en' %}" >en</a></li>
+              {% else %}
+                <li>
+                  <a href="{% url page 'uz' %}">uz</a>
+                </li>
+                <li class="lang-active">
+                  <a href="{% url page %}">ru</a>
+                </li>
+                <li><a href="{% url page 'en' %}" >en</a></li>
+              {% endif %}
+            </ul>
+            <ul>
+              {% for phone in contact_info.phones %}
+                <li>
+                  <a href="tel:+99897157479" class="hidden sm:flex">
+                    <img
+                      src="{% static '/img/phone.svg' %}"
+                      alt="Телефон"
+                      class="mr-3"
+                    />{{ phone }}</a>
+                  <a
+                    href="tel:{{ phone }}"
+                    class="
+                            flex
+                            sm:hidden
+                            justify-center
+                            items-center
+                            border
+                            rounded-full
+                            w-8
+                            h-8
+                            animate-pulse
+                          "
+                  >
+                    <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="block" />
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% elif lang == 'uz' %}
+  <!-- header -->
+  <header class="flex top-0 right-0 left-0 absolute py-10 px-5 text-lg">
+    <div class="container flex justify-between items-center relative">
+      <div class="z-40">
+        <a href="{% url 'home' 'uz' %}">
+          <img src="{% static '/img/logo.svg' %}" alt="Логотип" />
+        </a>
+      </div>
+      <ul class="hidden lg:flex justify-between max-w-[720px] w-full">
+        <li><a href="{% url 'home' 'uz' %}">Bosh sahifa</a></li>
+        <li><a href="{% url 'services' 'uz' %}">Bizning xizmatlarimiz</a></li>
+        <li><a href="{% url 'portfolio' 'uz' %}">Portfolio</a></li>
+        <li><a href="{% url 'contacts' 'uz' %}">Biz bilan aloqa</a></li>
+        <li><a href="{% url 'about' 'uz' %}">Kompaniyamiz haqida</a></li>
+      </ul>
+      <div
+        class="
+                hidden
+                lg:flex
+                w-full
+                max-w-xs
+                justify-end
+                lg:justify-between lg:max-w-[150px]
+                xl:max-w-xs
+              "
+      >
+        <ul
+          class="
+                  lg:flex
+                  w-full
+                  items-center
+                  max-w-none
+                  lg:max-w-[80px]
+                  hidden
+                  justify-between
+                "
+        >
+          {% if slug %}
+            <li class="lang-active">
+              <a href="{% url page slug 'uz' %}" class="">uz</a>
+            </li>
+            <li>
+              <a href="{% url page slug %}">ru</a>
+            </li>
+            <li><a href="{% url page slug 'en' %}" class="">en</a></li>
+          {% else %}
+            <li class="lang-active">
+              <a href="{% url page 'uz' %}" class="">uz</a>
+            </li>
+            <li>
+              <a href="{% url page %}">ru</a>
+            </li>
+            <li><a href="{% url page 'en' %}" class="">en</a></li>
+          {% endif %}
+        </ul>
+        {% for phone in contact_info.phones %}
+          <a href="tel:{{ phone }}" class="hidden xl:flex">
+            <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="mr-3" />
+            {{ phone }}
+          </a>
+        <a
+          href="tel:{{ phone }}"
+          class="
+                  flex
+                  xl:hidden
+                  justify-center
+                  items-center
+                  border
+                  rounded-full
+                  w-10
+                  h-10
+                "
+        >
+        {% endfor %}
+
+
+          <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="block" />
+        </a>
+      </div>
+      <!-- hamburger menu -->
+      <div
+        class="
+                lg:hidden
+                flex flex-col
+                items-center
+                justify-center
+                space-y-1
+                select-none
+                cursor-pointer
+                border-2
+                rounded-full
+                w-10
+                h-10
+                z-40
+              "
+        id="hamburger"
+      >
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+      </div>
+      <!-- hamburger window -->
+      <div
+        class="
+                hidden
+                inset-0
+                backdrop-blur-sm
+                w-full
+                h-full
+                z-30
+                lg:hidden
+                bg-white bg-opacity-30
+              "
+        id="blur"
+      ></div>
+      <div
+        class="hidden lg:hidden absolute top-full right-0 left-0 pt-4 z-40"
+        id="mobile"
+      >
+        <div
+          class="
+                  bg-[#303030]
+                  p-7
+                  rounded-xl
+                  space-y-6
+                  shadow-2xl
+                  flex
+                  sm:block
+                "
+        >
+          <!-- navigation list -->
+          <ul class="w-full flex flex-col sm:flex-row justify-between">
+            <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
+            <li><a href="{% url 'services' 'uz' %}">Bizning xizmatlarimiz</a></li>
+            <li><a href="{% url 'portfolio' 'uz' %}">Portfolio</a></li>
+            <li><a href="{% url 'contacts' 'uz' %}">Biz bilan aloqa</a></li>
+            <li><a href="{% url 'about' 'uz' %}">Kompaniyamiz haqida</a></li>
+          </ul>
+          <!-- lang & number -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-between"
+          >
+            <ul
+              class="
+                      flex flex-col
+                      sm:flex-row sm:max-w-[80px]
+                      w-full
+                      justify-between
+                      items-center
+                    "
+            >
+              {% if slug %}
+                <li class="lang-active">
+                  <a href="{% url page slug 'uz' %}" >uz</a>
+                </li>
+                <li>
+                  <a href="{% url page slug %}">ru</a>
+                </li>
+                <li><a href="{% url page slug 'en' %}" >en</a></li>
+              {% else %}
+                <li class="lang-active">
+                  <a href="{% url page 'uz' %}">uz</a>
+                </li>
+                <li>
+                  <a href="{% url page %}">ru</a>
+                </li>
+                <li><a href="{% url page 'en' %}" >en</a></li>
+              {% endif %}
+            </ul>
+            <ul>
+              {% for phone in contact_info.phones %}
+                <li>
+                  <a href="tel:+99897157479" class="hidden sm:flex">
+                    <img
+                      src="{% static '/img/phone.svg' %}"
+                      alt="Телефон"
+                      class="mr-3"
+                    />{{ phone }}</a>
+                  <a
+                    href="tel:{{ phone }}"
+                    class="
+                            flex
+                            sm:hidden
+                            justify-center
+                            items-center
+                            border
+                            rounded-full
+                            w-8
+                            h-8
+                            animate-pulse
+                          "
+                  >
+                    <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="block" />
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% else %}
+  <!-- header -->
+  <header class="flex top-0 right-0 left-0 absolute py-10 px-5 text-lg">
+    <div class="container flex justify-between items-center relative">
+      <div class="z-40">
+        <a href="{% url 'home' 'en' %}">
+          <img src="{% static '/img/logo.svg' %}" alt="Логотип" />
+        </a>
+      </div>
+      <ul class="hidden lg:flex justify-between max-w-[720px] w-full">
+        <li><a href="{% url 'home' 'en' %}">Home page</a></li>
+        <li><a href="{% url 'services' 'en' %}">Our services</a></li>
+        <li><a href="{% url 'portfolio' 'en' %}">Portfolio</a></li>
+        <li><a href="{% url 'contacts' 'en' %}">Contacts</a></li>
+        <li><a href="{% url 'about' 'en' %}">About us</a></li>
+      </ul>
+      <div
+        class="
+                hidden
+                lg:flex
+                w-full
+                max-w-xs
+                justify-end
+                lg:justify-between lg:max-w-[150px]
+                xl:max-w-xs
+              "
+      >
+        <ul
+          class="
+                  lg:flex
+                  w-full
+                  items-center
+                  max-w-none
+                  lg:max-w-[80px]
+                  hidden
+                  justify-between
+                "
+        >
+          {% if slug %}
+            <li>
+              <a href="{% url page slug 'uz' %}" class="">uz</a>
+            </li>
+            <li>
+              <a href="{% url page slug %}">ru</a>
+            </li>
+            <li class="lang-active"><a href="{% url page slug 'en' %}" class="">en</a></li>
+          {% else %}
+            <li>
+              <a href="{% url page 'uz' %}" class="">uz</a>
+            </li>
+            <li>
+              <a href="{% url page %}">ru</a>
+            </li>
+            <li class="lang-active"><a href="{% url page 'en' %}" class="">en</a></li>
+          {% endif %}
+        </ul>
+        {% for phone in contact_info.phones %}
+          <a href="tel:{{ phone }}" class="hidden xl:flex">
+            <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="mr-3" />
+            {{ phone }}
+          </a>
+        <a
+          href="tel:{{ phone }}"
+          class="
+                  flex
+                  xl:hidden
+                  justify-center
+                  items-center
+                  border
+                  rounded-full
+                  w-10
+                  h-10
+                "
+        >
+        {% endfor %}
+
+
+          <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="block" />
+        </a>
+      </div>
+      <!-- hamburger menu -->
+      <div
+        class="
+                lg:hidden
+                flex flex-col
+                items-center
+                justify-center
+                space-y-1
+                select-none
+                cursor-pointer
+                border-2
+                rounded-full
+                w-10
+                h-10
+                z-40
+              "
+        id="hamburger"
+      >
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+        <span class="block w-6 h-0.5 bg-white rounded-full"></span>
+      </div>
+      <!-- hamburger window -->
+      <div
+        class="
+                hidden
+                inset-0
+                backdrop-blur-sm
+                w-full
+                h-full
+                z-30
+                lg:hidden
+                bg-white bg-opacity-30
+              "
+        id="blur"
+      ></div>
+      <div
+        class="hidden lg:hidden absolute top-full right-0 left-0 pt-4 z-40"
+        id="mobile"
+      >
+        <div
+          class="
+                  bg-[#303030]
+                  p-7
+                  rounded-xl
+                  space-y-6
+                  shadow-2xl
+                  flex
+                  sm:block
+                "
+        >
+          <!-- navigation list -->
+          <ul class="w-full flex flex-col sm:flex-row justify-between">
+            <li><a href="{% url 'home' 'en' %}">Home page</a></li>
+            <li><a href="{% url 'services' 'en' %}">Our services</a></li>
+            <li><a href="{% url 'portfolio' 'en' %}">Portfolio</a></li>
+            <li><a href="{% url 'contacts' 'en' %}">Contacts</a></li>
+            <li><a href="{% url 'about' 'en' %}">About us</a></li>
+          </ul>
+          <!-- lang & number -->
+          <div
+            class="flex flex-col sm:flex-row items-center justify-between"
+          >
+            <ul
+              class="
+                      flex flex-col
+                      sm:flex-row sm:max-w-[80px]
+                      w-full
+                      justify-between
+                      items-center
+                    "
+            >
+              {% if slug %}
+                <li>
+                  <a href="{% url page slug 'uz' %}" >uz</a>
+                </li>
+                <li>
+                  <a href="{% url page slug %}">ru</a>
+                </li>
+                <li class="lang-active"><a href="{% url page slug 'en' %}" >en</a></li>
+              {% else %}
+                <li>
+                  <a href="{% url page 'uz' %}">uz</a>
+                </li>
+                <li>
+                  <a href="{% url page %}">ru</a>
+                </li>
+                <li class="lang-active"><a href="{% url page 'en' %}" >en</a></li>
+              {% endif %}
+            </ul>
+            <ul>
+              {% for phone in contact_info.phones %}
+                <li>
+                  <a href="tel:+99897157479" class="hidden sm:flex">
+                    <img
+                      src="{% static '/img/phone.svg' %}"
+                      alt="Телефон"
+                      class="mr-3"
+                    />{{ phone }}</a>
+                  <a
+                    href="tel:{{ phone }}"
+                    class="
+                            flex
+                            sm:hidden
+                            justify-center
+                            items-center
+                            border
+                            rounded-full
+                            w-8
+                            h-8
+                            animate-pulse
+                          "
+                  >
+                    <img src="{% static '/img/phone.svg' %}" alt="Телефон" class="block" />
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endif %}

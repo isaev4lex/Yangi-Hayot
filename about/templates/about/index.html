@@ -1,0 +1,356 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+  {% if lang == 'ru' %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% else %}
+    {% for meta_tag in meta %}
+      <title>{{ meta_tag.title_uz }}</title>
+      <meta name="description" content="{{ meta_tag.description }}" />
+      <meta name="keywords" content="{{ meta_tag.keywords }}" />
+    {% endfor %}
+    {% for html_tag in head_tags %}
+      {% autoescape off %} {{ html_tag.tag }}{% endautoescape %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static '/css/style.css' %}" />
+{% endblock %}
+{% block content %}
+  {% if success_sent %}
+    {% include 'confirm.html' %}
+  {% endif %}
+  {% if lang == 'ru' %}
+    <!-- about -->
+    <div
+      class="
+              container
+              pt-[200px]
+              pb-10
+              space-y-10
+              lg:flex lg:justify-between lg:gap-x-5 lg:flex-row
+              flex-col
+            "
+    >
+      <div class="lg:w-1/2">
+        <h2 class="text-4xl intro-title xl:intro-title mb-5 lg:text-5xl">
+          О компании
+        </h2>
+        <p class="intro-subtitle">Вся кухня компании в цвете</p>
+        <div
+          class="
+                  relative
+                  border
+                  p-[20px]
+                  sm:p-[40px]
+                  xl:p-[70px]
+                  mt-[50px]
+                  leading-relaxed
+                  space-y-10
+                "
+        >
+          <p>
+            Наша компания Yangi Hayot занимается эстетической отделкой зданий, помещений и других объектов вот уже на протяжении многих лет. Оформление дизайна интерьера и экстерьера, планировка помещений, создание макетов и других элементов дизайна - это все по нашей части!
+          </p>
+          <p>
+            За весь опыт нашей работы мы занимались дизайн-проектами помещений различного назначения (дома, офисы, квартиры) и решали интересные задачи. При работе с клиентами мы всегда уделяем особое внимание индивидуальному и творческому подходу. Ведь именно креативные задумки становятся залогом гармоничного объединения требований заказчика, идей профессионалов и технических инноваций. А наша команда профессиональных дизайнеров готова воплотить в реальность ваши самые смелые идеи и пожелания до каждой мельчайшей детали.
+          </p>
+          <!-- dots -->
+          <div>
+            <span class="green-dot -top-2 -right-2"></span>
+            <span class="green-dot -top-2 -left-2"></span>
+            <span class="green-dot -bottom-2 -right-2"></span>
+            <span class="green-dot -bottom-2 -left-2"></span>
+          </div>
+        </div>
+      </div>
+      {% for banner in banners|slice:1 %}
+        <div class="hidden lg:block lg:w-[550px] relative">
+          <img
+            src="{{ banner.banner.url }}"
+            alt="О компании"
+            class="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- team -->
+    <div
+      class="container flex flex-col items-center justify-center h-full py-9"
+    >
+      <div class="w-full max-w-[1015px]">
+        <h2 class="text-4xl font-gigasans font-bold lg:text-[70px]">
+          Команда
+        </h2>
+        <p class="font-gigasans font-light text-[26px] mt-5">
+          Вся команда участвующая в проектах
+        </p>
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-10"
+        >
+          {% for worker in workers %}
+            <div
+            class="
+                    text-center
+                    max-w-[205px]
+                    w-full
+                    flex flex-col
+                    items-center
+                    mx-auto
+                  "
+          >
+            <div
+              class="
+                      border-2 border-[#74E04E]
+                      rounded-full
+                      h-[135px]
+                      w-[135px]
+                      mb-5
+                      overflow-hidden
+                    "
+            >
+              <img
+                src="{{ worker.img.url }}"
+                alt="{{ worker.name }}"
+                class="object-cover w-full h-full object-center"
+              />
+            </div>
+            <h3 class="font-gigasans text-[18px] mt-auto">
+              {{ worker.name }} {{ worker.surname }}
+            </h3>
+            <p class="font-gigasans text-[16px] text-[#74E04E] mt-auto">
+              {{ worker.work }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% elif lang == 'uz' %}
+    <!-- about -->
+    <div
+      class="
+              container
+              pt-[200px]
+              pb-10
+              space-y-10
+              lg:flex lg:justify-between lg:gap-x-5 lg:flex-row
+              flex-col
+            "
+    >
+      <div class="lg:w-1/2">
+        <h2 class="text-4xl intro-title xl:intro-title mb-5 lg:text-5xl">
+          Kompaniyamiz haqida
+        </h2>
+        <p class="intro-subtitle">Haqida eng qiziqarli ma'lumotlar</p>
+        <div
+          class="
+                  relative
+                  border
+                  p-[20px]
+                  sm:p-[40px]
+                  xl:p-[70px]
+                  mt-[50px]
+                  leading-relaxed
+                  space-y-10
+                "
+        >
+          <p>
+            "Yangi hayot" kompaniyamiz ko'p yillar davomida binolar, binolar va boshqa ob'ektlarni estetik bezash bilan shug'ullangan. Ichki va tashqi dizayn, binolarni rejalashtirish, maketlar va boshqa dizayn elementlarini yaratish - bularning hammasi bizning qo'limizda!
+          </p>
+          <p>
+            Bizning ish tajribamiz davomida biz turli maqsadlar uchun binolar (uylar, ofislar, kvartiralar) dizayn loyihalari bilan shug'ullanganmiz va qiziqarli muammolarni hal qilganmiz. Mijozlar bilan ishlashda biz har doim individual va ijodiy yondashuvga alohida e'tibor qaratamiz. Axir, bu ijodiy g'oyalar mijozlar talablari, professionallar g'oyalari va texnik yangiliklarning uyg'un kombinatsiyasining kalitiga aylanadi. Va bizning professional dizaynerlar jamoasi sizning eng dahshatli g'oyalaringiz va istaklaringizni har bir mayda -chuydagacha amalga oshirishga tayyor.
+          </p>
+          <!-- dots -->
+          <div>
+            <span class="green-dot -top-2 -right-2"></span>
+            <span class="green-dot -top-2 -left-2"></span>
+            <span class="green-dot -bottom-2 -right-2"></span>
+            <span class="green-dot -bottom-2 -left-2"></span>
+          </div>
+        </div>
+      </div>
+      {% for banner in banners|slice:1 %}
+        <div class="hidden lg:block lg:w-[550px] relative">
+          <img
+            src="{{ banner.banner.url }}"
+            alt="О компании"
+            class="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- team -->
+    <div
+      class="container flex flex-col items-center justify-center h-full py-9"
+    >
+      <div class="w-full max-w-[1015px]">
+        <h2 class="text-4xl font-gigasans font-bold lg:text-[70px]">
+          Jamoamiz
+        </h2>
+        <p class="font-gigasans font-light text-[26px] mt-5">
+          Barcha proektlarda ishtirok etadigan jamoa
+        </p>
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-10"
+        >
+          {% for worker in workers %}
+            <div
+            class="
+                    text-center
+                    max-w-[205px]
+                    w-full
+                    flex flex-col
+                    items-center
+                    mx-auto
+                  "
+          >
+            <div
+              class="
+                      border-2 border-[#74E04E]
+                      rounded-full
+                      h-[135px]
+                      w-[135px]
+                      mb-5
+                      overflow-hidden
+                    "
+            >
+              <img
+                src="{{ worker.img.url }}"
+                alt="{{ worker.name }}"
+                class="object-cover w-full h-full object-center"
+              />
+            </div>
+            <h3 class="font-gigasans text-[18px] mt-auto">
+              {{ worker.name }} {{ worker.surname }}
+            </h3>
+            <p class="font-gigasans text-[16px] text-[#74E04E] mt-auto">
+              {{ worker.work }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <!-- about -->
+    <div
+      class="
+              container
+              pt-[200px]
+              pb-10
+              space-y-10
+              lg:flex lg:justify-between lg:gap-x-5 lg:flex-row
+              flex-col
+            "
+    >
+      <div class="lg:w-1/2">
+        <h2 class="text-4xl intro-title xl:intro-title mb-5 lg:text-5xl">
+          About us
+        </h2>
+        <p class="intro-subtitle">How it functions inside the kompany</p>
+        <div
+          class="
+                  relative
+                  border
+                  p-[20px]
+                  sm:p-[40px]
+                  xl:p-[70px]
+                  mt-[50px]
+                  leading-relaxed
+                  space-y-10
+                "
+        >
+          <p>
+            Our company, Yangi Hayot, has been engaged in the aesthetic decoration of buildings, premises and other objects for many years. Interior and exterior design, layout of premises, creation of layouts and other design elements - that's all in our part!
+          </p>
+          <p>
+            Over the entire experience of our work, we have been engaged in design projects for premises for various purposes (houses, offices, apartments) and solved interesting problems. When working with clients, we always pay special attention to an individual and creative approach. After all, it is creative ideas that become the key to a harmonious combination of customer requirements, ideas of professionals and technical innovations. And our team of professional designers is ready to make your wildest ideas and wishes come true to every smallest detail.
+          </p>
+          <!-- dots -->
+          <div>
+            <span class="green-dot -top-2 -right-2"></span>
+            <span class="green-dot -top-2 -left-2"></span>
+            <span class="green-dot -bottom-2 -right-2"></span>
+            <span class="green-dot -bottom-2 -left-2"></span>
+          </div>
+        </div>
+      </div>
+      {% for banner in banners|slice:1 %}
+        <div class="hidden lg:block lg:w-[550px] relative">
+          <img
+            src="{{ banner.banner.url }}"
+            alt="О компании"
+            class="absolute inset-0 w-full h-full object-cover object-center"
+          />
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- team -->
+    <div
+      class="container flex flex-col items-center justify-center h-full py-9"
+    >
+      <div class="w-full max-w-[1015px]">
+        <h2 class="text-4xl font-gigasans font-bold lg:text-[70px]">
+          Team workers
+        </h2>
+        <p class="font-gigasans font-light text-[26px] mt-5">
+          Everyone who takes part in projects
+        </p>
+        <div
+          class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10 mt-10"
+        >
+          {% for worker in workers %}
+            <div
+            class="
+                    text-center
+                    max-w-[205px]
+                    w-full
+                    flex flex-col
+                    items-center
+                    mx-auto
+                  "
+          >
+            <div
+              class="
+                      border-2 border-[#74E04E]
+                      rounded-full
+                      h-[135px]
+                      w-[135px]
+                      mb-5
+                      overflow-hidden
+                    "
+            >
+              <img
+                src="{{ worker.img.url }}"
+                alt="{{ worker.name }}"
+                class="object-cover w-full h-full object-center"
+              />
+            </div>
+            <h3 class="font-gigasans text-[18px] mt-auto">
+              {{ worker.name }} {{ worker.surname }}
+            </h3>
+            <p class="font-gigasans text-[16px] text-[#74E04E] mt-auto">
+              {{ worker.work }}
+            </p>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock %}
+{% block scripts %}
+  <script src="{% static '/js/index.js' %}" defer></script>
+{% endblock %}
